@@ -1,0 +1,72 @@
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}
+
+.dialog-wrapper > .dialog-header {
+    margin-bottom: 1rem;
+    height: 30px;
+}
+
+.dialog-wrapper > .dialog-header,
+.dialog-wrapper > .dialog-content {
+    width: 100%;
+    display: block;
+}
+
+.dialog-wrapper > .dialog-header > h2,
+.dialog-wrapper > .dialog-header > button {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.dialog-wrapper > .dialog-header > h2 {
+    width: 90%;
+    float: left;
+
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.dialog-wrapper > .dialog-header > button {
+    width: 10%;
+    float: right;
+}
+
+.dialog-wrapper > .dialog-header > .close-dialog {
+    color: var(--neutral-gray-n5);
+    font-size: 20px;
+    height: 30px;
+    float: right;
+    cursor: pointer;
+
+    transition: color 200ms;
+}
+
+.dialog-wrapper > .dialog-header > .close-dialog:hover {
+    color: var( --lipstick-red-color);
+    transition: color 200ms;
+}
+
+.add-new-project-dialog {
+    width: 360px;
+}
+
+.submit-button-wrapper {
+    width: 100%;
+    text-align: center;
+    margin-top: 1.25rem;
+    margin-bottom: .25rem;
+}
+
+.submit-button-wrapper > button {
+    width: 100%;
+}

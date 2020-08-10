@@ -1,0 +1,4 @@
+.toggle-sorting-button.is-active {
+    background-color: var(--secondary-color);
+    transition: background-color 200ms;
+}

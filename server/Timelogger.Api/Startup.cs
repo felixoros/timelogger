@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Timelogger.Api.Enums;
+using Timelogger.Api.Factories.Classes;
+using Timelogger.Api.Factories.Interfaces;
 using Timelogger.Entities;
 
 namespace Timelogger.Api
@@ -37,6 +41,15 @@ namespace Timelogger.Api
 			}
 			
 			services.AddMvc();
+			
+			var serviceProvider = services.BuildServiceProvider();
+			var apiContext = serviceProvider.GetService<ApiContext>();
+			
+			IProviderFactory providerFactory = new ProviderFactory(apiContext);
+			services.AddSingleton(providerFactory.ProjectProvider);
+			
+			services.AddSingleton<IProjectCommandFactory, ProjectCommandFactory>();
+			services.AddSingleton<IProjectQueryFactory, ProjectQueryFactory>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,11 +79,49 @@ namespace Timelogger.Api
 			var testProject1 = new Project
 			{
 				Id = 1,
-				Name = "e-conomic Interview"
+				Name = "e-conomic Interview",
+				WorkedTime = 1,
+				LastWorkedOn = DateTime.UtcNow,
+				Deadline = DateTime.UtcNow,
+				State = ProjectState.NotStarted,
 			};
+			
+			var testProject2 = new Project
+			{
+				Id = 2,
+				Name = "My extra project",
+				WorkedTime = 30,
+				LastWorkedOn = DateTime.UtcNow,
+				Deadline = DateTime.UtcNow.AddDays(4),
+				State = ProjectState.Finished,
+			};
+			
+			var testProject3 = new Project
+			{
+				Id = 3,
+				Name = "Some website",
+				WorkedTime = 31,
+				LastWorkedOn = DateTime.UtcNow,
+				Deadline = DateTime.UtcNow.AddDays(3),
+				State = ProjectState.Ongoing,
+			};
+			
+			var testProject4 = new Project
+			{
+				Id = 4,
+				Name = "My active project",
+				WorkedTime = 80,
+				LastWorkedOn = DateTime.UtcNow.AddDays(-1),
+				Deadline = DateTime.UtcNow.AddDays(2),
+				State = ProjectState.Active,
+			};
+			
 
 			context.Projects.Add(testProject1);
-
+			context.Projects.Add(testProject2);
+			context.Projects.Add(testProject3);
+			context.Projects.Add(testProject4);
+			
 			context.SaveChanges();
 		}
 	}

@@ -1,0 +1,36 @@
+.alert-wrapper {
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+
+    z-index: 200000;
+
+    visibility: hidden;
+    overflow-x: hidden;
+    animation: 400ms ease-in-out hidden forwards;
+}
+
+.alert-wrapper.show {
+    animation: 100ms ease-in-out show forwards;
+}
+
+@keyframes show {
+    0% {
+        right: 0;
+    }
+    100% {
+        right: 30px;
+        visibility: visible;
+    }
+}
+
+@keyframes hidden {
+    0% {
+        right: 30px;
+    }
+    100% {
+        right: 0;
+        left: 100vw;
+        visibility: hidden;
+    }
+}

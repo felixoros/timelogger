@@ -1,0 +1,62 @@
+table {
+    background: white;
+    border: solid 2px var(--neutral-gray-n3);
+    border-collapse: separate;
+}
+
+th,
+td {
+    border: none;
+}
+
+thead {
+    border-bottom: solid 1px var(--neutral-gray-n3);
+}
+
+thead > tr { background-color: var(--white-color); }
+thead > tr > th {
+    color: var(--main-color);
+}
+
+thead > tr {
+    height: 60px;
+}
+
+tbody > tr {
+    height: 60px;
+    border-bottom: solid 1px var(--neutral-gray-n3);
+}
+tbody > tr > td { text-align: center; }
+
+tr.is-active {
+    background-color: var(--bottled-banana-milk);
+}
+
+tr > td > div > button,
+tr > td > div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+tr > .activity-cell > .timer {
+    display: none;
+    margin-left: .5rem;
+}
+
+tr.is-active > .activity-cell > .timer {
+    display: inline-block;
+}
+
+.activity-cell > div > button {
+    height: 25px;
+    padding: 0 10px;
+    margin-left: 1rem;
+}
+
+tr > td > div > button { display: none; }
+
+tr:hover > td > div > .primary-button { display: inline-block; }
+tr.is-active:hover > td > div > .red-button { display: inline-block; }
+tr.is-active:hover > td > div > .primary-button { display: none; }
+
+tr.is-finished > td > div > button { display: none !important; }
